@@ -3,7 +3,6 @@ import {
   ICourse,
   ICourseDetailsResponse,
   ICourseSpeficiations,
-  IPaginatedProductsResponse,
   IPaginatedReturnResponse,
   IReturnResponse,
 } from "@/utils/types";
@@ -19,6 +18,11 @@ const courseService = {
     course_id: number
   ): Promise<IReturnResponse<ICourseDetailsResponse>> =>
     request.get(`courses/${course_id}`),
+  attendStudent: (body: {
+    lecture_code: string;
+    student_code: string;
+  }): Promise<IReturnResponse<ICourseDetailsResponse>> =>
+    request.post(`courses/attendance`, body),
 };
 
 export default courseService;

@@ -61,7 +61,7 @@ const InstructorsContent = () => {
       )}
       <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 md:grid-cols-3 gap-8">
         {data?.pages.map((instructors) => (
-          <>
+          <React.Fragment key={instructors.data.meta.current_page}>
             {instructors.data.data.map((instructor) => (
               <Link
                 key={instructor.id}
@@ -84,7 +84,7 @@ const InstructorsContent = () => {
                 </div>
               </Link>
             ))}
-          </>
+          </React.Fragment>
         ))}
       </div>
     </>

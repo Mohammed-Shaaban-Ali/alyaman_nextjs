@@ -1,5 +1,4 @@
-"use client";
-import { aboutUsImg01, postDetails } from "@/assets";
+import { postDetails } from "@/assets";
 import AppContainer from "@/components/AppContainer";
 import OurPosts from "@/components/home/our-posts";
 import {
@@ -10,21 +9,58 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import { useTranslations } from "next-intl";
+import postService from "@/services/post";
+import { Metadata } from "next";
+import { getTranslations } from "next-intl/server";
 import Image from "next/image";
-import React from "react";
+import { notFound, redirect } from "next/navigation";
 
-const Page = () => {
-  const t = useTranslations();
+type PageProps = {
+  params: { id: string };
+  searchParams?: { [key: string]: string };
+};
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}): Promise<Metadata> {
+  const id = (await params).id;
+
+  const data = await postService.getSinglePost(parseInt(id));
+
+  if (!data.data) return {};
+
+  return {
+    description: data.data.meta_description,
+    title: data.data.title + "|" + "Alyaman Platform",
+    openGraph: {
+      title: data.data.title,
+      description: data.data.meta_description,
+      images: [data.data.image],
+    },
+  };
+}
+
+const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
+  const id = (await params).id;
+
+  const t = await getTranslations();
+  const post = await postService.getSinglePost(parseInt(id));
+  if (!post.data) return notFound();
+
   return (
     <div>
-      <AppContainer className="mt-32">
+      <AppContainer className="mt-8">
         <Breadcrumb>
           <BreadcrumbList>
             <BreadcrumbItem>
               <BreadcrumbLink href="/">{t("Home")}</BreadcrumbLink>
             </BreadcrumbItem>
-
+            <BreadcrumbSeparator />
+            <BreadcrumbItem>
+              <BreadcrumbLink href="/posts">{t("Posts")}</BreadcrumbLink>
+            </BreadcrumbItem>
             <BreadcrumbSeparator />
             <BreadcrumbItem>
               <BreadcrumbPage>{t("Post Details")}</BreadcrumbPage>
@@ -34,46 +70,19 @@ const Page = () => {
       </AppContainer>
       <AppContainer>
         <div className="w-full mx-auto min-h-64 pt-12  pb-12">
-          <article className="    space-y-6">
-            <div className="w-full  overflow-hidden rounded-xl">
+          <article className="space-y-6">
+            <div className="w-full aspect-video overflow-hidden rounded-xl">
               <Image
-                src={postDetails}
-                alt={"data.data.title"}
+                src={post.data.image}
+                alt={post.data.title}
+                width={1200}
+                height={675}
                 className="w-full h-full object-cover"
+                priority
               />
             </div>
-            <h1 className="text-4xl font-semibold">
-              Explore Our Articles: Your Gateway to Knowledge
-            </h1>
-            <p>
-              Welcome to a rich and expansive world of knowledge, where every
-              article is a step toward deeper understanding and meaningful
-              growth. Our platform is dedicated to delivering content that
-              resonates with your curiosity, empowering you with insights across
-              a variety of fields such as technology, health, lifestyle,
-              education, self-improvement, and more. Each article is carefully
-              crafted to provide value, combining fresh ideas with practical
-              advice to ensure that your journey through our content is both
-              enjoyable and enlightening. Whether you&apos;re an avid learner
-              looking to expand your knowledge base, a professional aiming to
-              stay ahead in your field, or someone seeking inspiration for
-              personal growth, this is the perfect space to begin your
-              exploration. Our goal is to help you make informed decisions,
-              embrace creativity, and achieve your aspirations by equipping you
-              with the tools and perspectives that matter. With a focus on
-              clarity and depth, our articles break down complex ideas into
-              easily digestible insights, making knowledge accessible to
-              everyone. As you dive into our library of content, you&apos;ll
-              find engaging stories, thought-provoking analysis, and actionable
-              takeaways tailored to fuel your passion for learning. From
-              understanding the latest innovations to rediscovering timeless
-              wisdom, our articles are here to guide you every step of the way.
-              Let this be more than just a reading experience; let it be a
-              journey of discovery and empowerment. Explore our collection and
-              uncover the endless possibilities that await you. Your next big
-              idea, breakthrough, or life-changing inspiration might just be a
-              click away. Start now, and let curiosity lead you to new horizons!
-            </p>
+            <h1 className="text-4xl font-semibold">{post.data.title}</h1>
+            <p dangerouslySetInnerHTML={{ __html: post.data.content }}></p>
           </article>
         </div>
         <OurPosts />

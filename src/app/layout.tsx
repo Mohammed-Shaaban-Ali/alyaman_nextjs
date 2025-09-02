@@ -9,6 +9,7 @@ import { getLocale, getMessages } from "next-intl/server";
 import { Cairo, Zain } from "next/font/google";
 import appService from "../services/app";
 import "./globals.css";
+import { Toaster } from "@/components/ui/sonner";
 
 export const metadata: Metadata = {
   title: "AlYaman Platform",
@@ -46,7 +47,7 @@ export default async function RootLayout({
               } antialiased`}
             >
               <GsapPlugins />
-
+              <Toaster />
               <Navbar />
 
               {children}
