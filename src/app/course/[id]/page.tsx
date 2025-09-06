@@ -36,7 +36,7 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
     return "-";
   };
   return (
-    <AppContainer className=" mt-30 mx-auto py-8">
+    <AppContainer className=" mt-8 mx-auto py-8">
       {/* Breadcrumb */}
       <Breadcrumb className="mb-6">
         <BreadcrumbList>
@@ -91,9 +91,9 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
                 {t("Instructor Details")}
               </h3>
               <div className="flex gap-4 items-start">
-                {/* <Avatar className="size-20">
-                  <AvatarImage src={assets.user01.src} />
-                </Avatar> */}
+                <Avatar className="size-20">
+                  <AvatarImage src={course.data.course_data.teacher.image} />
+                </Avatar>
                 <div className="flex flex-col">
                   <div className="font-semibold">
                     {course.data.course_data.teacher.name}

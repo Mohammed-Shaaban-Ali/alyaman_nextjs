@@ -37,9 +37,7 @@ const FooterStyle15 = () => {
       email: "",
     },
   });
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-  }
+  function onSubmit(values: z.infer<typeof formSchema>) {}
   return (
     <footer className="mt-20  bg-[#153900] ltr:rounded-tl-[6rem] rtl:rounded-tr-[6rem] relative w-full  h-full ">
       <Image fill src={heroBg} alt="" className="z-10  rounded-t-[6rem]" />

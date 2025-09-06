@@ -17,14 +17,16 @@ const HeroVideoDialog = () => {
       <DialogTrigger>
         <div className="group text-main gap-2 flex items-center  w-fit bg-transparent text-main-yellow  cursor-pointer  overflow-hidden z-10 relative transition-all duration-300">
           <TLPlayCircle
-            className="text-main me-1 size-12 rtl:rotate-180 ltr:rotate-0 transition-transform duration-700 ltr:group-hover:rotate-[360deg] rtl:group-hover:rotate-[-360deg]"
+            className="text-main me-1 sm:size-12 size-8 rtl:rotate-180 ltr:rotate-0 transition-transform duration-700 ltr:group-hover:rotate-[360deg] rtl:group-hover:rotate-[-360deg]"
             aria-hidden="true"
           />
-          <span className="text-2xl font-semibold">{t("Watch Video")}</span>
+          <span className="sm:text-2xl text-base font-semibold">
+            {t("Watch Video")}
+          </span>
         </div>
       </DialogTrigger>
 
-      <DialogContent className="md:max-w-2xl sm:max-w-sm max-w-sm max-[400px]:max-w-xs w-full p-0 border-none flex flex-col items-center">
+      <DialogContent className=" w-full p-0 border-none flex flex-col items-center">
         <DialogHeader className="mt-8">
           <DialogTitle></DialogTitle>
         </DialogHeader>

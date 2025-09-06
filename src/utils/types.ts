@@ -329,6 +329,7 @@ export interface ICourseTeacher {
   id: number;
   name: string;
   overview: string;
+  image: string;
 }
 export interface ICourse {
   id: number;

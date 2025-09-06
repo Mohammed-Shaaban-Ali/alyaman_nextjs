@@ -612,7 +612,6 @@ const MultipleSelector01 = React.forwardRef<
                                 setInputValue("");
                                 if (!selected.includes(option)) {
                                   const newOptions = [...selected, option];
-                                  console.log({ newOptions });
                                   setSelected(newOptions);
                                   onChange?.(newOptions);
                                 } else {

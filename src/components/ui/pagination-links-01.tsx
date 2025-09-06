@@ -13,6 +13,8 @@ import {
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
+import { parseAsInteger, useQueryState } from "nuqs";
 
 type PaginationProps = {
   currentPage: number;
@@ -25,20 +27,27 @@ export default function PaginationLinks01({
   totalPages,
   paginationItemsToDisplay = 5,
 }: PaginationProps) {
+  const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));
+
   const { pages, showLeftEllipsis, showRightEllipsis } = usePagination({
     currentPage,
     totalPages,
     paginationItemsToDisplay,
   });
+  const goToPage = (newPage: number) => {
+    if (newPage < 1 || newPage > totalPages) return;
+    setPage(newPage);
+  };
 
+  const t = useTranslations();
   return (
     <div className="w-full">
       {/* Mobile pagination - simplified view */}
       <div className="flex items-center justify-between sm:hidden">
         <div className="flex items-center gap-2">
           <PaginationLink
-            className="aria-disabled:pointer-events-none border border-input aria-disabled:opacity-50 h-8 w-8 p-0"
-            href={currentPage === 1 ? undefined : `?page=${currentPage - 1}`}
+            className="aria-disabled:pointer-events-none  cursor-pointer border border-input aria-disabled:opacity-50 h-8 w-8 p-0"
+            onClick={() => goToPage(page - 1)}
             aria-label="Go to previous page"
             aria-disabled={currentPage === 1 ? true : undefined}
             role={currentPage === 1 ? "link" : undefined}
@@ -52,17 +61,13 @@ export default function PaginationLinks01({
 
           <div className="flex items-center gap-1 px-3 py-1 text-sm">
             <span className="font-medium">{currentPage}</span>
-            <span className="text-muted-foreground">of</span>
+            <span className="text-muted-foreground">{t("of")}</span>
             <span className="font-medium">{totalPages}</span>
           </div>
 
           <PaginationLink
-            className="aria-disabled:pointer-events-none border border-input aria-disabled:opacity-50 h-8 w-8 p-0"
-            href={
-              currentPage === totalPages
-                ? undefined
-                : `?page=${currentPage + 1}`
-            }
+            className="aria-disabled:pointer-events-none  cursor-pointer border border-input aria-disabled:opacity-50 h-8 w-8 p-0"
+            onClick={() => goToPage(page + 1)}
             aria-label="Go to next page"
             aria-disabled={currentPage === totalPages ? true : undefined}
             role={currentPage === totalPages ? "link" : undefined}
@@ -82,8 +87,8 @@ export default function PaginationLinks01({
           {/* First page button */}
           <PaginationItem>
             <PaginationLink
-              className="aria-disabled:pointer-events-none border border-input aria-disabled:opacity-50"
-              href={currentPage === 1 ? undefined : `?page=1`}
+              className="aria-disabled:pointer-events-none  cursor-pointer border border-input aria-disabled:opacity-50"
+              onClick={() => goToPage(1)}
               aria-label="Go to first page"
               aria-disabled={currentPage === 1 ? true : undefined}
               role={currentPage === 1 ? "link" : undefined}
@@ -99,8 +104,8 @@ export default function PaginationLinks01({
           {/* Previous page button */}
           <PaginationItem>
             <PaginationLink
-              className="aria-disabled:pointer-events-none border border-input aria-disabled:opacity-50"
-              href={currentPage === 1 ? undefined : `?page=${currentPage - 1}`}
+              className="aria-disabled:pointer-events-none  cursor-pointer border border-input aria-disabled:opacity-50"
+              onClick={() => goToPage(page - 1)}
               aria-label="Go to previous page"
               aria-disabled={currentPage === 1 ? true : undefined}
               role={currentPage === 1 ? "link" : undefined}
@@ -127,11 +132,11 @@ export default function PaginationLinks01({
                 <PaginationItem key={page}>
                   <PaginationLink
                     className={cn(
-                      "border border-input",
+                      "border border-input cursor-pointer",
                       page === currentPage &&
-                        "border border-[#404040] text-[#404040] rounded-lg"
+                        "bg-main border border-main text-white"
                     )}
-                    href={`?page=${page}`}
+                    onClick={() => goToPage(page)}
                     isActive={page === currentPage}
                   >
                     {page}
@@ -152,11 +157,11 @@ export default function PaginationLinks01({
           <PaginationItem>
             <PaginationLink
               className={cn(
-                "border border-input rounded-lg",
+                "border border-input rounded-lg cursor-pointer",
                 totalPages === currentPage &&
-                  "bg-[#54248c] border border-main text-white"
+                  "bg-main border border-main text-white"
               )}
-              href={`?page=${totalPages}`}
+              onClick={() => goToPage(totalPages)}
               isActive={currentPage === totalPages}
             >
               {totalPages}
@@ -166,12 +171,8 @@ export default function PaginationLinks01({
           {/* Next page button */}
           <PaginationItem>
             <PaginationLink
-              className="aria-disabled:pointer-events-none border border-input aria-disabled:opacity-50"
-              href={
-                currentPage === totalPages
-                  ? undefined
-                  : `?page=${currentPage + 1}`
-              }
+              className="aria-disabled:pointer-events-none cursor-pointer border border-input aria-disabled:opacity-50"
+              onClick={() => goToPage(page + 1)}
               aria-label="Go to next page"
               aria-disabled={currentPage === totalPages ? true : undefined}
               role={currentPage === totalPages ? "link" : undefined}
@@ -187,10 +188,8 @@ export default function PaginationLinks01({
           {/* Last page button */}
           <PaginationItem>
             <PaginationLink
-              className="aria-disabled:pointer-events-none border border-input aria-disabled:opacity-50"
-              href={
-                currentPage === totalPages ? undefined : `?page=${totalPages}`
-              }
+              className="aria-disabled:pointer-events-none  cursor-pointer border border-input aria-disabled:opacity-50"
+              onClick={() => goToPage(totalPages)}
               aria-label="Go to last page"
               aria-disabled={currentPage === totalPages ? true : undefined}
               role={currentPage === totalPages ? "link" : undefined}

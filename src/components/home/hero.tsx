@@ -163,27 +163,27 @@ const Hero = () => {
           priority
         />
 
-        <AppContainer className="flex mt-0 mb-8 gap-16 z-20 relative w-full lg:flex-row flex-col-reverse lg:items-start items-center">
+        <AppContainer className="flex mt-0 mb-8 gap-16 z-20 relative w-full lg:flex-row flex-col lg:items-start items-center">
           <div className="flex lg:flex-row flex-col-reverse gap-10">
-            <div className="flex lg:mt-0 mt-10 justify-between  lg:pt-28 lg:items-start items-center  h-full gap-y-2 z-30 relative  flex-col">
-              <h1 className="text-[#020202] leading-16 big-header opacity-0 lg:text-5xl text-3xl font-medium  lg:max-w-lg  max-w-lg text-start ">
+            <div className="flex lg:mt-0 mt-4 justify-between  lg:pt-28 lg:items-start items-center  h-full gap-y-2 z-30 relative  flex-col">
+              <h1 className="text-[#020202] lg:leading-16 big-header opacity-0 lg:text-5xl text-3xl font-medium  lg:max-w-lg  max-w-lg text-center ">
                 {homeData.hero_section.hero_section_title}{" "}
                 <span className="text-main">
                   {homeData.hero_section.hero_section_title_2}
                 </span>
               </h1>
-              <p className="max-w-[500px] paragraph-desc opacity-0 text-[#020202] text-xl text-start ">
+              <p className="max-w-[500px] paragraph-desc opacity-0 text-[#020202] text-xl text-center ">
                 {homeData.hero_section.hero_section_description}
               </p>
               <div className="flex hero-btns w-full opacity-0 flex-row justify-center lg:justify-start  gap-8 lg:mt-6 mt-6 relative z-20">
-                <Button className="bg-main-dark px-8 text-lg w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
+                <Button className="bg-main-dark px-8 sm:text-lg text-base w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
                   {t("Contact Us")}
                 </Button>
                 <HeroVideoDialog />
               </div>
             </div>
           </div>
-          <div className="flex opacity-0 relative sm:pt-20 pt-16 gap-x-8 lg:flex-col flex-row lg:mt-0  z-20 data-count text-[#020202] gap-y-8">
+          <div className="flex opacity-0 relative sm:pt-20 lg:pt-16 lg:pb-0 pb-12 gap-x-8 lg:flex-col flex-row lg:mt-0  z-20 data-count text-[#020202] gap-y-8">
             <div className="group absolute">
               <Triangle className="text-[#F7BD11] lg:size-19 sm:size-14 size-10 group-hover:rotate-[270deg] transition-all duration-500 sm:-top-6 -top-0 z-[12] sm:-start-20 -start-10 absolute" />
               <Triangle className="text-[#FDEBB5] lg:size-19 sm:size-14 size-10 group-hover:-rotate-[270deg] transition-all duration-500 sm:-top-6 -top-0 rotate-45 sm:-start-20 -start-10 absolute" />
@@ -191,23 +191,23 @@ const Hero = () => {
             <div className=" z-[9] relative gap-x-12 flex ltr:lg:me-24  rtl:lg:ms-24 ">
               <div className="absolute border-main"></div>
 
-              <div className="relative max-[400px]:w-[250px] w-[300px] sm:w-[400px] md:size-[450px] lg:size-[450px]">
+              <div className="relative w-[120px] h-[180px] min-[400px]:h-[250px] min-[400px]:w-[200px] sm:h-[300px] sm:w-[250px] md:size-[370px] lg:w-[370px] lg:h-[420px]">
                 <Image
                   src={homeData.hero_section.hero_section_image_1}
                   alt="hero"
                   fill
-                  className="start-0  h-full top-0 z-[13] object-contain"
+                  className="start-0  h-full rounded-full top-0 z-[13] object-cover"
                   priority
                 />
-                <div className="absolute hero-chat-text bg-[#684F07] rounded-full lg:w-32 lg:h-12 sm:w-20 sm:h-8 w-16 h-6  sm:top-18 top-18 z-[13] lg:-end-16 -end-12">
+                <div className="absolute hero-chat-text bg-[#684F07] rounded-full lg:w-32 lg:h-12 sm:w-20 sm:h-8 w-16 h-6  sm:top-18 min-[400]:top-10 top-5 z-[13] lg:-end-16 -end-12">
                   <div className="flex absolute top-2/4 -translate-y-2/4 left-2/4 -translate-x-2/4 flex-col justify-start items-start gap-2">
                     <div className="lg:w-24 sm:w-14 w-12 bg-white sm:h-1 h-0.5 rounded-full"></div>
                     <div className="lg:w-18 sm:w-8 w-6 bg-white sm:h-1 h-0.5 rounded-full"></div>
                   </div>
                 </div>
-                <div className="lg:size-40 sm:size-30 size-22 border-[20px] absolute bottom-0 -start-8 z-[12] border-main-dark bg-transparent rounded-full sm:border-[28px] lg:border-[35px]"></div>
+                <div className="lg:size-40 sm:size-30 min-[400px]:size-22 size-20 border-[18px] absolute -bottom-8 -start-8 z-[12] border-main-dark bg-transparent rounded-full min-[400px]:border-[20px] sm:border-[28px] lg:border-[35px]"></div>
               </div>
-              <div className="relative w-full h-full mt-4 sm:mt-8 lg:mt-12">
+              <div className="relative w-full h-full mt-4 sm:mt-8 lg:mt-12 flex justify-center">
                 {/* Dots pattern */}
                 <div className="absolute z-10 end-2 sm:end-6 lg:end-10 -top-4 sm:-top-6 lg:-top-14 flex flex-col">
                   <div className="flex flex-col gap-1 sm:gap-2 lg:gap-3">
@@ -228,12 +228,12 @@ const Hero = () => {
                 </div>
 
                 {/* Hero image container */}
-                <div className="relative w-full sm:h-[450px] h-[300px] md:h-[400px] lg:h-[450px] z-[12]">
+                <div className="relative w-[80px] h-[180px] min-[400px]:h-[200px] min-[400px]:w-[100px]  sm:h-[300px] sm:w-[180px] md:w-[200px] md:h-[350px] lg:h-[456px] lg:w-[226px]">
                   <Image
                     src={homeData.hero_section.hero_section_image_2}
                     fill
                     alt="hero2"
-                    className="hero-person-2 object-contain relative z-20 "
+                    className="hero-person-2 rounded-full size-full object-cover z-20 "
                     priority
                   />
 

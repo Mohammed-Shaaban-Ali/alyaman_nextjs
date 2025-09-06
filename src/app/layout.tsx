@@ -10,10 +10,21 @@ import { Cairo, Zain } from "next/font/google";
 import appService from "../services/app";
 import "./globals.css";
 import { Toaster } from "@/components/ui/sonner";
+import { NuqsAdapter } from "nuqs/adapters/next/app";
 
 export const metadata: Metadata = {
   title: "AlYaman Platform",
   description: "AlYaman Platform",
+  icons: [
+    {
+      url: "/icons/logo.png",
+      media: "(prefers-color-scheme: light)",
+    },
+    {
+      url: "/icons/logo.png",
+      media: "(prefers-color-scheme: dark)",
+    },
+  ],
 };
 
 const zain = Zain({
@@ -46,12 +57,14 @@ export default async function RootLayout({
                 locale == "en" ? zain.className : cairo.className
               } antialiased`}
             >
-              <GsapPlugins />
-              <Toaster />
-              <Navbar />
+              <NuqsAdapter>
+                <GsapPlugins />
+                <Toaster />
+                <Navbar />
 
-              {children}
-              <FooterStyle12 />
+                {children}
+                <FooterStyle12 />
+              </NuqsAdapter>
             </body>
           </NextIntlClientProvider>
         </HomeDataProvider>
