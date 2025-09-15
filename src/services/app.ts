@@ -8,6 +8,7 @@ import {
   ICustomerFeedback,
   IHomeData,
   IHomeDataServices,
+  IJobApplyBody,
   IPolicy,
   IRegion,
   IReturnResponse,
@@ -63,6 +64,10 @@ const appService = {
     request.post(`notifications/delete-all`),
   readNotification: (id: number): Promise<IReturnResponse<null>> =>
     request.post(`/open-notification/${id}`),
+  sendJobApplication: (body: IJobApplyBody): Promise<IReturnResponse<null>> =>
+    request.post(`/send-job-application`, body, {
+      headers: { "Content-Type": "multipart/form-data" },
+    }),
 };
 
 export default appService;

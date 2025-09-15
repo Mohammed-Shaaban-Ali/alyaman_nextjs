@@ -242,6 +242,40 @@ export interface ICityData {
   is_active: boolean;
   price: string;
 }
+export interface IJobApplyBody {
+  /** Required - String - Max 255 characters (Applicant's full name) */
+  full_name: string;
+
+  /** Required - Valid email - Max 255 characters */
+  email: string;
+
+  /** Required - String - Max 20 characters */
+  phone: string;
+
+  /** Optional - String - Max 500 characters (Applicant's address) */
+  address?: string;
+
+  /** Required - Date - Must be before today (Applicant's birth date) */
+  birth_date: string; // ISO date string
+
+  /** Required - String - Max 255 characters (Educational background) */
+  education: string;
+
+  /** Required - String - Max 255 characters (Specialization field) */
+  specialization: string;
+
+  /** Optional - String (Previous work experience) */
+  previous_experience?: string;
+
+  /** Optional - String - Max 255 characters (Job title the applicant is applying for) */
+  desired_position?: string;
+
+  /** Required - File - Max 5MB - Allowed types: pdf, doc, docx */
+  cv: File;
+
+  /** Optional - String (Additional notes from the applicant) */
+  notes?: string;
+}
 
 export interface ICheckoutResponse {
   payment_url: string;

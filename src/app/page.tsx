@@ -4,6 +4,7 @@ import AdsSection from "@/components/home/ads-section";
 import BestServices from "@/components/home/best-services";
 import Hero from "@/components/home/hero";
 import HomeSlider from "@/components/home/home-slider";
+import JobApplyAd from "@/components/home/job-apply-ad";
 import OurPosts from "@/components/home/our-posts";
 import PartnersSection from "@/components/home/partners-section";
 import { TestimonialsSimple } from "@/components/home/user-reviews";
@@ -19,6 +20,7 @@ export default function Home() {
       <PartnersSection />
       <TestimonialsSimple />
       <OurPosts />
+      <JobApplyAd />
     </div>
   );
 }
