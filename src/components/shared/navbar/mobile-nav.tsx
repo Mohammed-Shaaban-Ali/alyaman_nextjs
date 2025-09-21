@@ -18,6 +18,7 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 import LanugageMobileMenu from "./lanuguage-mobile-menu";
 import ProfileMobileMenu from "./profile-mobile-menu";
+import { Button } from "@/components/ui/button";
 const MobileNav = ({
   leftItems,
 }: {
@@ -83,10 +84,14 @@ const MobileNav = ({
               <LanugageMobileMenu />
               {/* <ProfileMobileMenu /> */}
             </div>
-
-            {/* <div className="fixed bottom-6 left-0 right-0 px-4">
-              <LogoutConfirmDialog forMobile={true} />
-            </div> */}
+            <Link
+              href={process.env.NEXT_PUBLIC_API_BASE_URL || "/"}
+              className=""
+            >
+              <Button className="bg-main w-full cursor-pointer text-lg hover:bg-main/80 duration-300">
+                {t("Login")}
+              </Button>
+            </Link>
           </AppContainer>
         </SheetContent>
       </Sheet>
