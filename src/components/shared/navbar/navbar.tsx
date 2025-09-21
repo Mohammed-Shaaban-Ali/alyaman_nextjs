@@ -96,6 +96,11 @@ const Navbar = () => {
           {/* Desktop nav (right items) */}
           <div className=" hidden lg:flex items-center gap-x-4">
             <LanguageSelectMenu />
+            <Link href={process.env.NEXT_PUBLIC_API_BASE_URL || "/"}>
+              <Button className="bg-main cursor-pointer text-lg hover:bg-main/80 duration-300">
+                {t("Login")}
+              </Button>
+            </Link>
           </div>
 
           {/* Mobile nav */}

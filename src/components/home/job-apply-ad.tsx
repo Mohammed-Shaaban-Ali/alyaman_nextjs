@@ -24,7 +24,7 @@ const JobApplyAd = () => {
             </p>
             <div className="flex items-center gap-4">
               <Link href="/job-apply" className="group">
-                <Button className="group inline-flex h-12 cursor-pointer items-center justify-center rounded-full px-6 font-medium bg-main hover:bg-main/85 duration-500 transition-all shadow-lg hover:shadow-main/30">
+                <Button className="group text-lg inline-flex h-12 cursor-pointer items-center justify-center rounded-full px-6 font-medium bg-main hover:bg-main/85 duration-500 transition-all shadow-lg hover:shadow-main/30">
                   {t("Apply to Job")}
                   <TLArrowRight
                     className="ms-2 size-5 text-white transition-transform ltr:group-hover:translate-x-0.5 ltr:rotate-0 rtl:rotate-180 rtl:group-hover:-translate-x-0.5"
@@ -32,7 +32,7 @@ const JobApplyAd = () => {
                   />
                 </Button>
               </Link>
-              <span className="text-white/70 text-sm">
+              <span className="text-white/70 text-base">
                 {t("Become an instructor today")}
               </span>
             </div>

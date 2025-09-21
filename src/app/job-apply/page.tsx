@@ -31,6 +31,7 @@ import { PhoneInput } from "@/components/ui/phone-input";
 import parsePhoneNumberFromString, { CountryCode } from "libphonenumber-js";
 import { toast } from "sonner";
 import { DatePickerDemo } from "@/components/ui/date-picker";
+import { useSearchParams } from "next/navigation";
 const MAX_FILE_SIZE = 5 * 1024 * 1024; // 5MB
 const ACCEPTED_FILE_TYPES = [
   "application/pdf",
@@ -40,6 +41,9 @@ const ACCEPTED_FILE_TYPES = [
 
 export default function JobApplyPage() {
   const t = useTranslations();
+  const searchParams = useSearchParams();
+  const education = searchParams.get("education");
+  const specialization = searchParams.get("specialization");
   const schema = z.object({
     full_name: z.string().min(1, t("Required")).max(255),
     email: z.string().email(t("Invalid email")).max(255),
@@ -87,8 +91,8 @@ export default function JobApplyPage() {
       phone: "",
       address: "",
       birth_date: "",
-      education: "",
-      specialization: "",
+      education: education || "",
+      specialization: specialization || "",
       previous_experience: "",
       desired_position: "",
       notes: "",
