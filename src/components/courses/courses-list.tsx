@@ -15,7 +15,13 @@ const CoursesList = ({ courses }: { courses: ICourse[] | undefined }) => {
         </>
       );
     if (course.price_type === "monthly")
-      return `${course.price} ${t("aed per month")}`;
+      // return `${course.price} ${t("aed per month")}`;
+      return (
+        <>
+          <span className="aed-symbol ltr:me-1 rtl:ms-1">AED</span>
+          {course.price} / {t("monthly")}
+        </>
+      );
     if (course.price_type === "per_level") return t("Depends on the level");
     return "-";
   };
@@ -38,19 +44,24 @@ const CoursesList = ({ courses }: { courses: ICourse[] | undefined }) => {
               </Link>
             </CardHeader>
             <CardContent className="flex flex-col flex-1 gap-2 px-4">
-              <Link href={`/course/${course.id}`}>
-                <div className="flex items-center gap-2">
-                  <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-700 capitalize">
-                    {course.course_type_trans}
-                  </span>
+              <Link
+                href={`/course/${course.id}`}
+                className="flex h-full flex-col justify-between"
+              >
+                <div className="flex flex-col">
+                  <div className="flex items-center gap-2">
+                    <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-700 capitalize">
+                      {course.course_type_trans}
+                    </span>
+                  </div>
+                  <h3 className="font-semibold text-lg line-clamp-1">
+                    {course.name}
+                  </h3>
+                  <p className="text-sm text-gray-600 line-clamp-3">
+                    {course.description}
+                  </p>
                 </div>
-                <h3 className="font-semibold text-lg line-clamp-1">
-                  {course.name}
-                </h3>
-                <p className="text-sm text-gray-600 line-clamp-3">
-                  {course.description}
-                </p>
-                <div className="mt-auto py-2 font-bold text-main-yellow text-base">
+                <div className="mt-auto py-2 font-bold text-main-yellow text-sm">
                   {getPrice(course)}
                 </div>
               </Link>

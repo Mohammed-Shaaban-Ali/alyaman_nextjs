@@ -1,23 +1,13 @@
-import React from "react";
-import { Button } from "../ui/button";
-import TLArrowRight from "../right-arrow";
-import TLStarBadge from "../icons/tl-star-badge";
-import { courseImg01, room01, room02, room03, userImg } from "@/assets";
-import { cn } from "@/lib/utils";
-import Image from "next/image";
-import TLStarFill from "../icons/tl-star-fill";
-import AppContainer from "../AppContainer";
 import {
   Tabs,
-  TabsList,
-  TabsTrigger,
   TabsContent,
   TabsContents,
+  TabsList,
+  TabsTrigger,
 } from "@/components/animate-ui/radix/tabs";
-import { Card, CardContent } from "../ui/card";
-import TLPersonGraduated from "../icons/tl-person-graduated";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 import { useLocale, useTranslations } from "next-intl";
+import AppContainer from "../AppContainer";
+import { Button } from "../ui/button";
 import CourseCard from "./course-card";
 
 const CoursesListSection = () => {
