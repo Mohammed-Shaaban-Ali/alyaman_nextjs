@@ -188,6 +188,11 @@ export interface IHomeData {
 
   posts: IPost[];
   partners: { id: number; path: string }[];
+  faqs: {
+    id: number;
+    question: string;
+    answer: string;
+  }[];
 }
 
 export interface IPaginatedProductsResponse<T> {

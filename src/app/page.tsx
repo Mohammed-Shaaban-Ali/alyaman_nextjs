@@ -1,6 +1,7 @@
 import AboutUsSection from "@/components/home/about-us-section";
 import AdsSection from "@/components/home/ads-section";
 import BestServices from "@/components/home/best-services";
+import FaqsSection from "@/components/home/faqs-section";
 import Hero from "@/components/home/hero";
 import HomeSlider from "@/components/home/home-slider";
 import JobApplyAd from "@/components/home/job-apply-ad";
@@ -20,6 +21,7 @@ export default function Home() {
       <TestimonialsSimple />
       <OurPosts />
       <JobApplyAd />
+      <FaqsSection />
     </div>
   );
 }
