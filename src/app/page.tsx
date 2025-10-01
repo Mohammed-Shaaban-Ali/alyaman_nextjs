@@ -1,4 +1,3 @@
-import HomeMarquee from "@/components/home-marquee";
 import AboutUsSection from "@/components/home/about-us-section";
 import AdsSection from "@/components/home/ads-section";
 import BestServices from "@/components/home/best-services";
