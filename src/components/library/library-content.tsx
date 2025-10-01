@@ -116,6 +116,9 @@ const LibraryContent = () => {
 
   const { data, isLoading } = useQuery({
     queryKey: ["books", keyword, page],
+    refetchOnWindowFocus: false,
+    staleTime: 60 * 1000 * 60,
+    retry: false,
     queryFn: () =>
       libraryService.getBooks(
         {
@@ -126,7 +129,7 @@ const LibraryContent = () => {
   });
 
   // Fetch teacher data if instructorId is present
-
+  console.log(data);
   return (
     <>
       {/* Breadcrumb */}
@@ -151,7 +154,7 @@ const LibraryContent = () => {
             ref={searchInputRef}
             value={searchValue}
             onChange={(e) => setSearchValue(e.target.value)}
-            placeholder={t("Search courses") + "..."}
+            placeholder={t("Search Books") + "..."}
             className="pe-20"
             onKeyDown={(e) => {
               if (e.key === "Enter") {
@@ -185,7 +188,7 @@ const LibraryContent = () => {
       </div>
 
       {/* Courses Grid */}
-      {!isLoading && data?.data.data.length === 0 && (
+      {!isLoading && data?.data.books.data.length === 0 && (
         <div className="flex py-32 justify-center gap-y-6 flex-col items-center">
           <div className="relative size-32">
             <Image src={emptyCategories} alt="NoCourses" fill />
@@ -203,14 +206,14 @@ const LibraryContent = () => {
           ))}
         </div>
       ) : (
-        <BooksList books={data?.data.data} />
+        <BooksList books={data?.data.books.data} />
       )}
 
-      {!isLoading && data && data.data.meta.last_page > 1 && (
+      {!isLoading && data && data.data.books.meta.last_page > 1 && (
         <div className="mt-8">
           <PaginationLinks01
-            currentPage={data.data.meta.current_page}
-            totalPages={data.data.meta.last_page}
+            currentPage={data.data.books.meta.current_page}
+            totalPages={data.data.books.meta.last_page}
             paginationItemsToDisplay={4}
           />
         </div>

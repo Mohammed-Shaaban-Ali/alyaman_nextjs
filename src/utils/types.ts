@@ -48,6 +48,12 @@ export interface IPaginatedReturnResponse<T> {
   status: boolean;
   status_code: number;
 }
+export interface IPaginatedReturnResponseWithBooks<T> {
+  data: { books: IPaginatedData<T> };
+  message: string;
+  status: boolean;
+  status_code: number;
+}
 
 export interface ISubcategory {
   main_category_details: ICategory;
