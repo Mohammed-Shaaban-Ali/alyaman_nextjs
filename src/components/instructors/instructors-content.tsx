@@ -40,7 +40,7 @@ const InstructorsContent = () => {
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
-      {!isLoading && data?.data.data.length === 0 && (
+      {!isLoading && data?.data.courses?.data.length === 0 && (
         <div className="flex py-32 justify-center gap-y-6 flex-col items-center">
           <div className="relative size-32">
             <Image
@@ -62,7 +62,7 @@ const InstructorsContent = () => {
         </div>
       )}
       <div className="grid grid-cols-1 mt-6 sm:grid-cols-2 md:grid-cols-3 gap-8">
-        {data?.data.data.map((instructor) => (
+        {data?.data.courses.data.map((instructor) => (
           <Link
             key={instructor.id}
             href={`/courses?instructor=${instructor.id}`}
@@ -86,11 +86,11 @@ const InstructorsContent = () => {
         ))}
       </div>
 
-      {!isLoading && data && data.data.meta.last_page > 1 && (
+      {!isLoading && data && data.data.courses.meta.last_page > 1 && (
         <div className="mt-8">
           <PaginationLinks01
-            currentPage={data.data.meta.current_page}
-            totalPages={data.data.meta.last_page}
+            currentPage={data.data.courses.meta.current_page}
+            totalPages={data.data.courses.meta.last_page}
             paginationItemsToDisplay={4}
           />
         </div>
