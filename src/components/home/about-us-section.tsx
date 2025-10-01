@@ -6,6 +6,7 @@ import {
   aboutUsImg,
   aboutUsMini,
   logo,
+  newLogo,
 } from "@/assets";
 import Image from "next/image";
 import TLStarBadge from "../icons/tl-star-badge";
@@ -110,7 +111,7 @@ const AboutUsSection = () => {
             <div className="relative flex size-full justify-center items-center gap-3 flex-col">
               <div className="absolute lg:size-55 size-32 lg:-top-2 -top-2 z-[10] rounded-full border border-[#E7E7E9]"></div>
               <Image
-                src={logo}
+                src={newLogo}
                 alt="logo"
                 className=" lg:size-30 size-15 object-contain"
               />

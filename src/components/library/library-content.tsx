@@ -23,7 +23,7 @@ import { Button } from "../ui/button";
 import PaginationLinks01 from "../ui/pagination-links-01";
 
 import { Input } from "../ui/input";
-import { CircleXIcon, Search } from "lucide-react";
+import { CircleXIcon, RefreshCcwDot, Search } from "lucide-react";
 import { useState, useRef } from "react";
 
 // 🔑 nuqs
@@ -40,7 +40,7 @@ const LibraryContent = () => {
     "keyword",
     parseAsString.withDefault("")
   );
-  const [categoty, setCategoty] = useQueryState(
+  const [category, setcategory] = useQueryState(
     "category",
     parseAsString.withDefault("")
   );
@@ -59,11 +59,11 @@ const LibraryContent = () => {
   const handleResetFilters = () => {
     setKeyword(null);
     setPage(1);
-    setCategoty(null);
+    setcategory(null);
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: ["books", keyword, page, categoty],
+    queryKey: ["books", keyword, page, category],
     refetchOnWindowFocus: false,
     staleTime: 60 * 1000 * 60,
     retry: false,
@@ -71,7 +71,7 @@ const LibraryContent = () => {
       libraryService.getBooks({
         key_words: keyword ? keyword : undefined,
         page,
-        category_id: categoty ? Number(categoty) : undefined,
+        category_id: category ? Number(category) : undefined,
       }),
   });
 
@@ -93,8 +93,8 @@ const LibraryContent = () => {
       <hr />
 
       {/* Search input */}
-      <div className="flex justify-center mt-6 items-center gap-2 w-full mb-2">
-        <div className="relative mb-5 flex items-center w-full max-w-md">
+      <div className="flex flex-col md:flex-row justify-center mt-6 items-center gap-3 w-full mx-auto mb-5">
+        <div className="relative flex items-center w-full max-w-md">
           <Input
             id="keyword"
             ref={searchInputRef}
@@ -130,43 +130,43 @@ const LibraryContent = () => {
           >
             <Search size={20} />
           </Button>
+        </div>{" "}
+        <div className="flex  gap-4  items-center ">
+          {/* Language */}
+          {isLoading ? (
+            <div className="w-32 h-12 animate-pulse bg-gray-100 rounded-xl"></div>
+          ) : (
+            <Select
+              onValueChange={(val) => {
+                setcategory(val);
+                setPage(1);
+              }}
+              value={category ?? ""}
+            >
+              <SelectTrigger className="min-w-32">
+                <SelectValue placeholder={t("Select Category")} />
+              </SelectTrigger>
+              <SelectContent>
+                {categoryTypeOptions?.map((opt) => (
+                  <SelectItem key={opt.id} value={`${opt.id}`}>
+                    {opt.name}
+                  </SelectItem>
+                ))}
+              </SelectContent>
+            </Select>
+          )}
+
+          {(keyword || category) && (
+            <button
+              className="ml-1 h-12 w-12 justify-center  bg-red-600 hover:bg-red-700 cursor-pointer text-white font-medium rounded-lg transition-colors duration-200 flex items-center gap-2 group"
+              onClick={handleResetFilters}
+            >
+              <RefreshCcwDot className="group-hover:rotate-90 transition-transform duration-200 w-6 h-6" />
+            </button>
+          )}
         </div>
       </div>
-      {/* Filters */}
-      <div className="flex flex-wrap gap-4 my-6 items-center">
-        {/* Language */}
-        {isLoading ? (
-          <div className="w-32 h-12 animate-pulse bg-gray-100 rounded-xl"></div>
-        ) : (
-          <Select
-            onValueChange={(val) => {
-              setCategoty(val);
-              setPage(1);
-            }}
-            value={categoty ?? ""}
-          >
-            <SelectTrigger className="min-w-32">
-              <SelectValue placeholder={t("Select Category")} />
-            </SelectTrigger>
-            <SelectContent>
-              {categoryTypeOptions?.map((opt) => (
-                <SelectItem key={opt.id} value={`${opt.id}`}>
-                  {opt.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-        )}
 
-        {keyword || categoty ? (
-          <button
-            className="ml-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded text-xs font-medium"
-            onClick={handleResetFilters}
-          >
-            {t("Reset Filters")}
-          </button>
-        ) : null}
-      </div>
       {/* Courses Grid */}
       {!isLoading && data?.data.books.data.length === 0 && (
         <div className="flex py-32 justify-center gap-y-6 flex-col items-center">

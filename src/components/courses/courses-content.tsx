@@ -32,7 +32,13 @@ import {
   SelectValue,
 } from "../ui/select";
 import { Input } from "../ui/input";
-import { ChevronRight, CircleXIcon, Search, X } from "lucide-react";
+import {
+  ChevronRight,
+  CircleXIcon,
+  RefreshCcwDot,
+  Search,
+  X,
+} from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 
 // 🔑 nuqs
@@ -367,10 +373,10 @@ const CoursesContent = () => {
         minDuration ||
         maxDuration ? (
           <button
-            className="ml-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded text-xs font-medium"
+            className="ml-1 h-12 w-12 justify-center  bg-red-600 hover:bg-red-700 cursor-pointer text-white font-medium rounded-lg transition-colors duration-200 flex items-center gap-2 group"
             onClick={handleResetFilters}
           >
-            {t("Reset Filters")}
+            <RefreshCcwDot className="group-hover:rotate-90 transition-transform duration-200 w-6 h-6" />
           </button>
         ) : null}
       </div>
