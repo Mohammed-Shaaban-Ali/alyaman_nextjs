@@ -40,21 +40,29 @@ const items = [
   },
 ];
 
-const ExpansionPanel08 = () => {
+const ExpansionPanel08 = ({
+  questions,
+}: {
+  questions: {
+    id: number;
+    question: string;
+    answer: string;
+  }[];
+}) => {
   return (
     <Accordion type="single" collapsible className="w-full space-y-4">
-      {items.map((item) => (
+      {questions?.map((item) => (
         <AccordionItem
-          value={item.id}
+          value={`${item.id}`}
           key={item.id}
           className="group relative rounded-2xl border-0 bg-white h-full py-2 px-6"
         >
           {/* Left border with top/bottom spacing */}
-          <div className="absolute left-2 rounded-4xl top-0 bottom-0 w-1 bg-[#BFDAB0] transition-all duration-300 group-data-[state=open]:bg-main" />
+          <div className="absolute start-2 rounded-4xl top-0 bottom-0 w-1 bg-main-orange/50 transition-all duration-300 group-data-[state=open]:bg-main-orange" />
 
           <AccordionPrimitive.Header className="flex">
-            <AccordionPrimitive.Trigger className="group cursor-pointer  ps-2 text-black focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md py-2 text-left text-sm text-[15px] leading-6 font-medium group-data-[state=open]:font-semibold transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50">
-              {item.title}
+            <AccordionPrimitive.Trigger className="group cursor-pointer  ps-2 text-black focus-visible:border-ring focus-visible:ring-ring/50 flex flex-1 items-center justify-between gap-4 rounded-md py-2 text-left md:text-xl leading-6 font-medium group-data-[state=open]:font-semibold transition-all outline-none focus-visible:ring-[3px] disabled:pointer-events-none disabled:opacity-50">
+              {item.question}
               <div className="relative cursor-pointer size-6  flex items-center justify-center">
                 <span className=" absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] transition-transform duration-300 group-data-[state=open]:rotate-180 text-black">
                   <ChevronDown
@@ -66,8 +74,8 @@ const ExpansionPanel08 = () => {
               </div>
             </AccordionPrimitive.Trigger>
           </AccordionPrimitive.Header>
-          <AccordionContent className="text-black pb-2 ps-2">
-            {item.content}
+          <AccordionContent className="text-black  text-lg pb-2 ps-2">
+            {item.answer}
           </AccordionContent>
         </AccordionItem>
       ))}

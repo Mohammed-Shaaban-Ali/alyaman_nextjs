@@ -64,9 +64,9 @@ export function TestimonialsSimple() {
           <div className="w-7 border-t-2 border-main-orange rounded-full"></div>
           <div className="w-10 border-t-2 border-main-orange rounded-full"></div>
         </div>
-        <h1 className="font-semibold user-reviews-big-title text-center text-4xl max-w-md items-center">
+        <h2 className="font-semibold user-reviews-big-title text-center text-4xl max-w-md items-center">
           {t("Clients Reviews")}
-        </h1>
+        </h2>
         <div className="flex flex-col  items-start gap-1">
           <div className="w-7 border-t-2 border-main-orange rounded-full"></div>
           <div className="w-10 border-t-2 border-main-orange rounded-full"></div>
