@@ -42,6 +42,7 @@ const appService = {
     request.get("data/about/terms"),
   getRefundPolicy: (): Promise<IReturnResponse<IPolicy>> =>
     request.get("data/about/refund-policy"),
+  getPolicies: (): Promise<IReturnResponse<IPolicy>> => request.get("policies"),
   getCancellationPolicy: (): Promise<IReturnResponse<IPolicy>> =>
     request.get("data/about/cancellation-policy"),
   getAllAppQuestionsAnswers: (): Promise<

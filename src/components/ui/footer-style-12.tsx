@@ -73,9 +73,7 @@ const FooterStyle12 = () => {
               <li className="font-medium ">
                 <Link href={"/"}>{t("Home")}</Link>
               </li>
-              <li className="font-medium ">
-                <Link href={"/about-us"}>{t("About Us")}</Link>
-              </li>
+
               <li className="font-medium ">
                 <Link href={"/services"}>{t("Services")}</Link>
               </li>
@@ -84,6 +82,9 @@ const FooterStyle12 = () => {
               </li>
               <li className="font-medium ">
                 <Link href={"/contact-us"}>{t("Contact Us")}</Link>
+              </li>
+              <li className="font-medium ">
+                <Link href={"/policies"}>{t("Our Policies")}</Link>
               </li>
             </ul>
           </div>

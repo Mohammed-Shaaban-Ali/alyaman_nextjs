@@ -29,9 +29,21 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
   if (!course.data) return notFound();
   const t = await getTranslations();
   const getPrice = (course: ICourse) => {
-    if (course.price_type === "fixed") return `${course.price} ${t("AED")}`;
+    if (course.price_type === "fixed")
+      return (
+        <>
+          <span className="aed-symbol ltr:me-1 rtl:ms-1">AED</span>
+          {course.price}
+        </>
+      );
     if (course.price_type === "monthly")
-      return `${course.price} ${t("aed per month")}`;
+      // return `${course.price} ${t("aed per month")}`;
+      return (
+        <>
+          <span className="aed-symbol ltr:me-1 rtl:ms-1">AED</span>
+          {course.price} / {t("monthly")}
+        </>
+      );
     if (course.price_type === "per_level") return t("Depends on the level");
     return "-";
   };

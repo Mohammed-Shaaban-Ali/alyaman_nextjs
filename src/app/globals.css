@@ -64,6 +64,50 @@
   }
 }
 
+.policy-container {
+  counter-reset: h2-counter ul-counter li-counter;
+}
+
+.policy-container h2 {
+  counter-increment: h2-counter;
+  font-weight: 600;
+  font-size: 1.2rem;
+}
+
+.policy-container h2::before {
+  content: counter(h2-counter) ". ";
+  font-weight: bold;
+}
+
+.policy-container ul,
+ol {
+  counter-increment: ul-counter;
+  counter-reset: li-counter; /* Reset the <li> counter for each <ul> */
+  list-style-type: none; /* Remove default bullet points */
+  padding-left: 20px; /* Add some indentation */
+  margin: 10px 0;
+}
+
+/* Number each <li> */
+.policy-container ul li {
+  counter-increment: li-counter;
+  color: #333333;
+}
+.policy-container p {
+  color: #333333;
+}
+
+.policy-container ul li::before {
+  content: counter(h2-counter) "." counter(li-counter) " "; /* Display the <li> number */
+}
+.policy-container h2 + p {
+  padding-left: 20px; /* Match <ul> indent */
+}
+.policy-container p:last-of-type {
+  padding: 20px 0; /* Adjust as needed */
+  color: black;
+}
+
 @font-face {
   font-family: "Newaed";
   src: url("/fonts/Newaed-mini.ttf") format("truetype");

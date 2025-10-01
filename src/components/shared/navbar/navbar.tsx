@@ -18,29 +18,41 @@ const Navbar = () => {
     {
       title: "Home",
       href: "/",
+      hash: false,
     },
     {
       title: "About Us",
       href: "#about-us",
+      hash: true,
     },
     {
       title: "Services",
       href: "#services",
+      hash: true,
     },
     {
       title: "Posts",
       href: "/posts",
+      hash: false,
+    },
+    {
+      title: "Library",
+      href: "/library",
+      hash: false,
     },
     {
       title: "Courses",
+      hash: false,
       href: "/courses",
     },
     {
       title: "Instructors",
+      hash: false,
       href: "/instructors",
     },
     {
       title: "Contact Us",
+      hash: false,
       href: "/contact-us",
     },
   ];
@@ -75,7 +87,7 @@ const Navbar = () => {
                     )}
                   >
                     <Link
-                      href={item.href}
+                      href={item.hash ? `/${item.href}` : item.href}
                       className={cn(
                         "ltr:text-xl rtl:text-base text-[#020202] flex flex-row gap-1 items-center transition-all duration-300 font-medium  relative"
                       )}
