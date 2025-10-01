@@ -167,16 +167,16 @@ const Hero = () => {
         <AppContainer className="flex mt-0 mb-8 gap-16 z-20 relative  lg:flex-row flex-col lg:items-start items-center">
           <div className="flex lg:flex-row w-full flex-col-reverse gap-10">
             <div className="flex lg:mt-0 mt-4 justify-between  lg:pt-28 lg:items-start items-center  h-full gap-y-2 z-30 relative  flex-col">
-              <h1 className="text-[#020202] lg:leading-12 big-header opacity-0 lg:text-4xl text-3xl font-semibold  lg:max-w-xl  max-w-xl text-center ">
+              <h1 className="text-[#020202] lg:leading-11 big-header opacity-0 lg:text-4xl text-3xl font-semibold  lg:max-w-xl  max-w-xl text-center   lg:text-start ">
                 {homeData.hero_section.hero_section_title}{" "}
                 <span className="text-main">
                   {homeData.hero_section.hero_section_title_2}
                 </span>
               </h1>
-              <p className="max-w-[700px] paragraph-desc opacity-0 text-[#020202] text-xl text-center ">
+              <p className="max-w-[700px] paragraph-desc opacity-0 text-[#020202] text-xl text-center lg:text-start ">
                 {homeData.hero_section.hero_section_description}
               </p>
-              <div className="flex hero-btns w-full opacity-0 flex-row justify-center   gap-5 lg:mt-6 mt-6 relative z-20">
+              <div className="flex hero-btns w-full opacity-0 flex-row justify-center lg:justify-start  gap-5 lg:mt-6 mt-6 relative z-20">
                 <Link href="/courses">
                   <Button className="bg-main-dark px-8 sm:text-2xl  text-base w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
                     {/* {t("Contact Us")} */}
