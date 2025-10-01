@@ -11,7 +11,6 @@
   "Job Application": "Job Application",
   "Drag your file or": "Drag your file or",
   "Specialization": "Specialization",
-
   "our-best-services-desc": "Explore our range of specialized services designed to meet your needs and exceed your expectations",
   "Enter your password here": "Enter your password here",
   "What we do": "What we do",
@@ -105,6 +104,7 @@
   "Departments": "Departments",
   "About Us": "About Us",
   "Contact Us": "Contact Us",
+  "ShowCourses": "Show Courses",
   "FAQs": "FAQs",
   "Ready To Get Started": "Ready To Get Started",
   "footer-desc": "The purpose of a FAQ is generally to provide information on frequent questions or concerns.",
@@ -149,15 +149,12 @@
   "Receive your order and enjoy distinctive quality and a unique experience": "Receive your order and enjoy distinctive quality and a unique experience.",
   "Customer opinions": "Customer Opinions",
   "Customer opinions desc": "Listen to the experiences of our customers! Discover what our customers say about our products and services through their honest reviews, and join them in a distinctive shopping experience.",
-
   "Download our app and enjoy an easier shopping experience": "Download our app and enjoy an easier shopping experience",
   "download app desc": "Download our app now for faster and easier shopping! Discover the latest offers, track your orders, and enjoy a smooth experience anytime and anywhere.",
   "Find answers to all": "Find answers to all",
   "Your inquiries in the FAQ section": "Your inquiries in the FAQ section",
   "faqs desc": "In the FAQ section, you will find clear answers to all your questions about shopping, shipping, payment, and store policies. Explore it now to get the information you need quickly and easily!",
-
   "Favorites": "Favorites",
-
   "Send us a message": "Send us a message",
   "Your email address will not be published Required fields are specified": "Your email address will not be published. Required fields are specified.",
   "Contact us for assistance or more information": "Contact us for assistance or more information",
@@ -237,7 +234,6 @@
   "Your rating has been sent": "Your rating has been sent",
   "Your review has been sent successfully Thank you for helping us": "Your review has been sent successfully. Thank you for helping us",
   "Good": "Good",
-
   "Product name": "Product Name",
   "the price2": "Price",
   "the count2": "Quantity",
@@ -269,11 +265,9 @@
   "buyDone3": "Thank you for shopping with us!",
   "View Order": "View Order",
   "okay": "Okay",
-
   "General settings": "General settings",
   "My addresses": "My addresses",
   "Order History": "Order History",
-
   "Personal data": "Personal data",
   "You can change your personal information": "You can change your personal information",
   "e_mail": "Email",
@@ -284,7 +278,6 @@
   "You can change your password": "You can change your password",
   "delete account": "Delete account",
   "Do you want to delete your account?": "Do you want to delete your account?",
-
   "the name": "Name",
   "name change": "Change name",
   "change email": "Change email",
@@ -294,7 +287,6 @@
   "Please enter your password to confirm and complete the account deletion process": "Please enter your password to confirm and complete the account deletion process.",
   "password word": "Password",
   "delete": "Delete",
-
   "Phone number changed": "Phone number changed",
   "Add a new phone number": "Add a new phone number",
   "phoneNum": "Phone number",
@@ -303,7 +295,6 @@
   "Current Password": "Current Password",
   "forget password": "Forgot password?",
   "Don't worry, click here to have the code sent to your email": "Don't worry, click here to have the code sent to your email.",
-
   "add new address": "Add new address",
   "State": "State",
   "City": "City",
@@ -383,7 +374,6 @@
   "Filter Option": "Filter Option",
   "Size": "Size",
   "Product Type": "Product Type",
-
   "Clear All": "Clear All",
   "Showing": "Showing",
   "of": "of",
@@ -539,7 +529,6 @@
   "Total Amount": "Total Amount:",
   "Order Details": "Order Details",
   "See more": "See more",
-
   "forge password": "Forget Password?",
   "Create account": "Create account",
   "Enter Your Previous Experience Here": "Enter Your Previous Experience Here",
@@ -680,6 +669,5 @@
   "vat_value": "VAT",
   "date-of-birth": "Date of Birth",
   "date-of-birth-select": "Select Date of Birth",
-
   "message-sent-success-desc": "Thank you for contacting us. We have received your message, and our team will contact you shortly. We appreciate your feedback and look forward to assisting you!"
 }

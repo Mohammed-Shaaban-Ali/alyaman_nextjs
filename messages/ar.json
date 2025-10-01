@@ -102,7 +102,8 @@
   "Home": "الرئيسية",
   "Departments": "الأقسام",
   "About Us": "من نحن",
-  "Contact Us": "تواصل معنا",
+  "Contact Us": "استعرض الدورات",
+  "ShowCourses": "",
   "FAQs": "الأسئلة الشائعة",
   "Ready To Get Started": "هل مستعد للبدء ؟",
   "footer-desc": "الغرض من الأسئلة الشائعة بشكل عام هو توفير معلومات حول الأسئلة أو المخاوف المتكررة.",
@@ -143,15 +144,12 @@
   "Receive your order and enjoy distinctive quality and a unique experience": "تسلّم طلبك واستمتع بجودة مميزة وتجربة فريدة.",
   "Customer opinions": "آراء عملاء",
   "Customer opinions desc": "استمع إلى تجارب عملائنا! اكتشف ما يقوله عملاؤنا عن منتجاتنا وخدماتنا من خلال تقييماتهم الصادقة، وانضم إليهم في تجربة تسوق مميزة.",
-
   "Download our app and enjoy an easier shopping experience": "حمّل تطبيقنا واستمتع بتجربة تسوّق أسهل!",
   "download app desc": "حمل تطبيقنا الآن لتسوق أسرع وأسهل! اكتشف أحدث العروض، تتبع طلباتك، واستمتع بتجربة سلسة في أي وقت وأي مكان.",
   "Find answers to all": "ابحث عن إجابات لكل",
   "Your inquiries in the FAQ section": "استفساراتك في قسم الأسئلة الشائعة",
   "faqs desc": "في قسم الأسئلة الشائعة، ستجد إجابات واضحة لكل استفساراتك حول التسوق، الشحن، الدفع، وسياسات المتجر. استكشفه الآن للحصول على المعلومات التي تحتاجها بسرعة وسهولة!",
-
   "Favorites": "المفضلة",
-
   "Send us a message": "أرسل لنا رسالة",
   "Your email address will not be published Required fields are specified": "لن يتم نشر عنوان بريدك الإلكتروني. الحقول المطلوبة محددة",
   "Contact us for assistance or more information": "اتصل بنا للحصول على المساعدة أو لمزيد من المعلومات",
@@ -178,7 +176,6 @@
   "Orders History": "سجل الطلبات",
   "English": "الانجليزية",
   "Arabic": "العربية",
-
   "There are no sections available in this yet": "لا يوجد آقسام متاحة في هذه حتى الآن.",
   "There are no products available in this category yet": "لا يوجد منتجات متاحة في هذه الفئة حتى الآن.",
   "There are no products in your favorites yet": "لا يوجد منتجات في المفضلة حتي الآن",
@@ -217,7 +214,6 @@
   "Your rating has been sent": "تم إرسال تقييمك",
   "Your review has been sent successfully Thank you for helping us": "لقد تم إرسال تقيمك بنجاح شكرا لك  علي مساعدتنا",
   "Good": "حسنا",
-
   "Product name": "اسم المنتج",
   "the price2": "السعر",
   "the count2": "العدد",
@@ -237,7 +233,6 @@
   "Added": "تمت إضافة",
   "remove": "إزالة",
   "Remove": "إزالة",
-
   "empty cart": "يبدو أن عربة التسوق الخاصة بك فارغة. استكشف مجموعتنا وأضف العناصر التي تحبها!",
   "Title changed": "تغير العنوان",
   "Choose the appropriate title": "اختر العنوان المناسب",
@@ -307,7 +302,6 @@
   "Current Password": "كلمة المرور الحالية",
   "forget password": "نسيت كلمة المرور؟",
   "Don't worry, click here to have the code sent to your email": "لا تقلق، انقر هنا لإرسال الرمز إلى بريدك الإلكتروني.",
-
   "add new address": "إضافة عنوان جديد",
   "State": "الدولة",
   "City": "المدينة",
@@ -344,7 +338,6 @@
   "Choice of": "اختيار من",
   "Popular-we-have": "المشهورة لدينا",
   "Choice of Our Popular": "اختيار الدورات المميزة لدينا",
-
   "Drag your file or": "اسحب ملف أو",
   "Our Mission is to Provide a": "مهمتنا هي توفير",
   "Featured Topics By Category": "مواضيع مميزة حسب الفئة",
@@ -415,7 +408,6 @@
   "Have Questions": "هل لديك أسئلة؟ لدينا الإجابات!",
   "My Account": "حسابي",
   "View More Comments": "عرض المزيد من التعليقات",
-
   "My Favorites": "المفضلة",
   "Product Details": "تفاصيل المنتج",
   "Total Reviews": "إجمالي التعليقات",
@@ -439,7 +431,6 @@
   "Filter Option": "خيار الفلترة",
   "Size": "الحجم",
   "Product Type": "نوع المنتج",
-
   "Clear All": "مسح الكل",
   "Showing": "عرض",
   "of": "من",
@@ -473,7 +464,6 @@
   "Social Media": "وسائل التواصل الاجتماعي",
   "vat_value": "ضريبة القيمة المضافة",
   "Messages": "الرسائل",
-
   "Shape": "الشكل",
   "Favourite": "المفضلة",
   "There are no products in the favorites yet": "لا توجد منتجات في المفضلة بعد.",

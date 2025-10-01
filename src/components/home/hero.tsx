@@ -11,6 +11,7 @@ import { Button } from "../ui/button";
 import Triangle from "../icons/triangle";
 import { useHomeData } from "@/contexts/global/home-data";
 import HeroVideoDialog from "../dialogs/hero-video-dialog";
+import Link from "next/link";
 
 gsap.registerPlugin(useGSAP);
 
@@ -175,11 +176,19 @@ const Hero = () => {
               <p className="max-w-[500px] paragraph-desc opacity-0 text-[#020202] text-xl text-center ">
                 {homeData.hero_section.hero_section_description}
               </p>
-              <div className="flex hero-btns w-full opacity-0 flex-row justify-center lg:justify-start  gap-8 lg:mt-6 mt-6 relative z-20">
-                <Button className="bg-main-dark px-8 sm:text-lg text-base w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
-                  {t("Contact Us")}
-                </Button>
-                <HeroVideoDialog />
+              <div className="flex hero-btns w-full opacity-0 flex-row justify-center lg:justify-start  gap-5 lg:mt-6 mt-6 relative z-20">
+                <Link href="/courses">
+                  <Button className="bg-main-dark px-8 sm:text-lg text-base w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
+                    {/* {t("Contact Us")} */}
+                    {t("ShowCourses")}
+                  </Button>
+                </Link>
+                <Link href="/job-apply">
+                  <Button className="bg-transparent  hover:bg-main hover:text-white  text-main px-8 sm:text-2xl text-base font-semibold  w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
+                    {t("Apply to Job")}
+                  </Button>
+                </Link>
+                {/* <HeroVideoDialog /> */}
               </div>
             </div>
           </div>
