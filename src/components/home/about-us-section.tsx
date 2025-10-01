@@ -171,7 +171,7 @@ const AboutUsSection = () => {
               <h2 className="lg:text-4xl leading-12 text-3xl  max-w-md">
                 {homeData.about_section?.aboutus_title}
               </h2>
-              <p className="max-w-md">
+              <p className="max-w-md whitespace-pre-line">
                 {homeData.about_section?.aboutus_description}
               </p>
             </div>
