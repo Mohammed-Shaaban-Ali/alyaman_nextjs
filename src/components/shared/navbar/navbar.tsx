@@ -67,7 +67,7 @@ const Navbar = () => {
           <div className="flex items-center gap-2">
             <div className="me-4 items-center flex">
               <Link href="/" className="me-6 flex items-center space-x-2">
-                <div className="relative sm:w-16 w-12 h-full ">
+                <div className="relative sm:w-14 w-12 h-full ">
                   {/* <Image src={logo} alt="logo" className=" inset-0 " /> */}
                   <Image src={newLogo} alt="logo" className=" inset-0 " />
                 </div>
