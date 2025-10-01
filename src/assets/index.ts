@@ -1,4 +1,5 @@
 import logo from "./images/logo.png";
+import newLogo from "./images/new_logo.png";
 import heroImg from "./images/girl-with-winter-clothes-shopping-bags.png";
 import heroText from "./images/Leiboutique-dotted.svg";
 import heroBg from "./images/hero-bg.png";
@@ -96,6 +97,7 @@ export {
   aboutUsImg,
   heroBgCircle,
   logo,
+  newLogo,
   heroBg2,
   heroGrid,
   room01,

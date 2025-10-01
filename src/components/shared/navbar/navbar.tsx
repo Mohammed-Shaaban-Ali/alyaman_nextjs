@@ -11,7 +11,7 @@ import { useTranslations } from "use-intl";
 import LanguageSelectMenu from "./language-select-menu";
 import MobileNav from "./mobile-nav";
 import Image from "next/image";
-import { logo } from "@/assets";
+import { logo, newLogo } from "@/assets";
 
 const Navbar = () => {
   const leftItems = [
@@ -56,7 +56,8 @@ const Navbar = () => {
             <div className="me-4 items-center flex">
               <Link href="/" className="me-6 flex items-center space-x-2">
                 <div className="relative sm:w-16 w-12 h-full ">
-                  <Image src={logo} alt="logo" className=" inset-0 " />
+                  {/* <Image src={logo} alt="logo" className=" inset-0 " /> */}
+                  <Image src={newLogo} alt="logo" className=" inset-0 " />
                 </div>
               </Link>
             </div>
