@@ -1,5 +1,5 @@
 "use client";
-import { heroBg, heroBg2, logo } from "@/assets";
+import { heroBg, heroBg2, logo, newLogo } from "@/assets";
 import TLFaceBookLine from "@/components/facebook-line";
 import TLInstagramLine from "@/components/instagram-line";
 import TLLinkedInLine from "@/components/linkedin-line";
@@ -57,7 +57,8 @@ const FooterStyle12 = () => {
       <div className="z-[15] relative container  mx-auto lg:px-20 px-6 flex-row items-center gap-3 justify-between text-[#020202] lg:p-8 lg:pt-8 pb-6 pt-12 border-b border-input/30 mt-4 font-semibold">
         <div className="grid z-30 grid-cols-2 gap-6 lg:grid-cols-6">
           <div className="  flex gap-y-4 flex-col order-1 col-span-3 max-w-xl">
-            <Image src={logo} alt="dummy" width={100} height={36} />
+            {/* <Image src={logo} alt="dummy" width={100} height={36} /> */}
+            <Image src={newLogo} alt="dummy" width={100} height={36} />
             {appSettings.general_description && (
               <p className="text-[#333333] font-medium">
                 {appSettings.general_description}

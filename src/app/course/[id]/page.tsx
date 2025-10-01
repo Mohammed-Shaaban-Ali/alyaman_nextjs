@@ -81,9 +81,12 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
               </div>
             </CardHeader>
             <CardContent className="flex flex-col gap-4 p-6">
-              <div className="flex items-center gap-2">
+              <div className="flex items-center  justify-between gap-2">
                 <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-700 capitalize">
                   {course.data.course_data.course_type_trans}
+                </span>
+                <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-700 capitalize">
+                  {course.data.course_data.language?.native_name}
                 </span>
               </div>
               <h1 className="font-bold text-2xl">
@@ -92,8 +95,13 @@ const Page = async ({ params }: { params: Promise<{ id: string }> }) => {
               <p className="text-base text-gray-700 whitespace-pre-line">
                 {course.data.course_data.description}
               </p>
-              <div className="pt-2 font-bold text-main-yellow text-lg">
-                {getPrice(course.data.course_data)}
+              <div className="flex  items-center justify-between  gap-2">
+                <div className="pt-2 font-bold text-main-yellow text-lg">
+                  {getPrice(course.data.course_data)}
+                </div>
+                <span className="text-sm text-gray-600">
+                  {course.data.course_data.duration_in_hours} hours
+                </span>
               </div>
             </CardContent>
           </Card>

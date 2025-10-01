@@ -31,7 +31,7 @@ const BooksList = ({ books }: { books: IBook[] | undefined }) => {
                 className="flex h-full flex-col justify-between"
               >
                 <div className="flex flex-col">
-                  <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-700 capitalize">
+                  <span className="text-xs w-fit px-2 py-0.5 rounded bg-gray-100 text-gray-700 capitalize">
                     {book.category?.name}
                   </span>
                   <h3 className="font-semibold text-lg line-clamp-1">

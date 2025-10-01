@@ -164,27 +164,27 @@ const Hero = () => {
           priority
         />
 
-        <AppContainer className="flex mt-0 mb-8 gap-16 z-20 relative w-full lg:flex-row flex-col lg:items-start items-center">
-          <div className="flex lg:flex-row flex-col-reverse gap-10">
+        <AppContainer className="flex mt-0 mb-8 gap-16 z-20 relative  lg:flex-row flex-col lg:items-start items-center">
+          <div className="flex lg:flex-row w-full flex-col-reverse gap-10">
             <div className="flex lg:mt-0 mt-4 justify-between  lg:pt-28 lg:items-start items-center  h-full gap-y-2 z-30 relative  flex-col">
-              <h1 className="text-[#020202] lg:leading-16 big-header opacity-0 lg:text-5xl text-3xl font-medium  lg:max-w-lg  max-w-lg text-center ">
+              <h1 className="text-[#020202] lg:leading-12 big-header opacity-0 lg:text-4xl text-3xl font-semibold  lg:max-w-xl  max-w-xl text-center ">
                 {homeData.hero_section.hero_section_title}{" "}
                 <span className="text-main">
                   {homeData.hero_section.hero_section_title_2}
                 </span>
               </h1>
-              <p className="max-w-[500px] paragraph-desc opacity-0 text-[#020202] text-xl text-center ">
+              <p className="max-w-[700px] paragraph-desc opacity-0 text-[#020202] text-xl text-center ">
                 {homeData.hero_section.hero_section_description}
               </p>
-              <div className="flex hero-btns w-full opacity-0 flex-row justify-center lg:justify-start  gap-5 lg:mt-6 mt-6 relative z-20">
+              <div className="flex hero-btns w-full opacity-0 flex-row justify-center   gap-5 lg:mt-6 mt-6 relative z-20">
                 <Link href="/courses">
-                  <Button className="bg-main-dark px-8 sm:text-lg text-base w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
+                  <Button className="bg-main-dark px-8 sm:text-2xl  text-base w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
                     {/* {t("Contact Us")} */}
                     {t("ShowCourses")}
                   </Button>
                 </Link>
                 <Link href="/job-apply">
-                  <Button className="bg-transparent  hover:bg-main hover:text-white  text-main px-8 sm:text-2xl text-base font-semibold  w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
+                  <Button className="bg-main  hover:bg-main/90 text-white   px-8 sm:text-2xl text-base font-semibold  w-fit cursor-pointer rounded-xl h-12 overflow-hidden z-10 relative transition-all duration-300 hover:scale-105">
                     {t("Apply to Job")}
                   </Button>
                 </Link>
@@ -192,15 +192,15 @@ const Hero = () => {
               </div>
             </div>
           </div>
-          <div className="flex opacity-0 relative sm:pt-20 lg:pt-16 lg:pb-0 pb-12 gap-x-8 lg:flex-col flex-row lg:mt-0  z-20 data-count text-[#020202] gap-y-8">
+          <div className="flex opacity-0 relative sm:pt-20 lg:pt-16 lg:pb-0 pb-12 gap-x-5 lg:flex-col flex-row lg:mt-0  z-20 data-count text-[#020202] gap-y-5">
             <div className="group absolute">
               <Triangle className="text-[#F7BD11] lg:size-19 sm:size-14 size-10 group-hover:rotate-[270deg] transition-all duration-500 sm:-top-6 -top-0 z-[12] sm:-start-20 -start-10 absolute" />
               <Triangle className="text-[#FDEBB5] lg:size-19 sm:size-14 size-10 group-hover:-rotate-[270deg] transition-all duration-500 sm:-top-6 -top-0 rotate-45 sm:-start-20 -start-10 absolute" />
             </div>
-            <div className=" z-[9] relative gap-x-12 flex ltr:lg:me-24  rtl:lg:ms-24 ">
+            <div className=" z-[9] relative gap-x-8 flex ltr:lg:me-16 rtl:lg:ms-16 ">
               <div className="absolute border-main"></div>
 
-              <div className="relative w-[120px] h-[180px] min-[400px]:h-[250px] min-[400px]:w-[200px] sm:h-[300px] sm:w-[250px] md:size-[370px] lg:w-[370px] lg:h-[420px]">
+              <div className="relative w-[120px] h-[180px] min-[400px]:h-[250px] min-[400px]:w-[200px] sm:h-[300px] sm:w-[250px] md:size-[300px]  lg:h-[420px]">
                 <Image
                   src={homeData.hero_section.hero_section_image_1}
                   alt="hero"
@@ -237,7 +237,7 @@ const Hero = () => {
                 </div>
 
                 {/* Hero image container */}
-                <div className="relative w-[80px] h-[180px] min-[400px]:h-[200px] min-[400px]:w-[100px]  sm:h-[300px] sm:w-[180px] md:w-[200px] md:h-[350px] lg:h-[456px] lg:w-[226px]">
+                <div className="relative w-[80px] h-[180px] min-[400px]:h-[200px] min-[400px]:w-[100px]  sm:h-[300px] sm:w-[180px] md:w-[180px] md:h-[350px] lg:h-[456px] ">
                   <Image
                     src={homeData.hero_section.hero_section_image_2}
                     fill
