@@ -675,5 +675,6 @@
   "success_payment": "تمت عملية الدفع بنجاح",
   "date-of-birth": "تاريخ الميلاد",
   "Min Duration": "المدة الدنيا",
-  "Max Duration": "المدة القصوى"
+  "Max Duration": "المدة القصوى",
+  "Select Category": "اختر القسم"
 }

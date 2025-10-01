@@ -52,7 +52,10 @@ export interface IPaginatedReturnResponse<T> {
   status_code: number;
 }
 export interface IPaginatedReturnResponseWithBooks<T> {
-  data: { books: IPaginatedData<T> };
+  data: {
+    books: IPaginatedData<T>;
+    categories: { id: number; name: string }[];
+  };
   message: string;
   status: boolean;
   status_code: number;

@@ -10,6 +10,7 @@ const libraryService = {
   getBooks: (body: {
     key_words?: string;
     page?: number;
+    category_id?: number;
   }): Promise<IPaginatedReturnResponseWithBooks<IBook[]>> =>
     request.post(`books`, body),
 
