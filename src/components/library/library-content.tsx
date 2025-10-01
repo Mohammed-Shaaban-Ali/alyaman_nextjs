@@ -37,6 +37,8 @@ import { useState, useEffect, useRef } from "react";
 
 // 🔑 nuqs
 import { useQueryState, parseAsString, parseAsInteger } from "nuqs";
+import BooksList from "./books-list";
+import libraryService from "@/services/library";
 
 const priceTypeOptions = [
   { label: "fixed", value: "fixed" },
@@ -58,7 +60,7 @@ const learningTypeOptions = [
   { label: "Self Study", value: "self-study" },
 ];
 
-const CoursesContent = () => {
+const LibraryContent = () => {
   const t = useTranslations();
   const searchInputRef = useRef<HTMLInputElement>(null);
 
@@ -113,49 +115,17 @@ const CoursesContent = () => {
   };
 
   const { data, isLoading } = useQuery({
-    queryKey: [
-      "courses",
-      priceType,
-      courseType,
-      provider,
-      keyword,
-      instructorId,
-      // learning_type,
-      page,
-    ],
+    queryKey: ["books", keyword, page],
     queryFn: () =>
-      courseService.getCourses(
+      libraryService.getBooks(
         {
-          institution_or_individual: "individual",
-          price_type: priceType as PriceTypes,
-          course_type: courseType as CourseTypes,
           key_words: keyword ? keyword : undefined,
-          teacher_id: instructorId ? Number(instructorId) : undefined,
-          // learning_type: learningType ? learningType : undefined
         },
         page
       ),
   });
 
   // Fetch teacher data if instructorId is present
-  useEffect(() => {
-    if (
-      instructorId &&
-      data &&
-      data.data &&
-      Array.isArray(data.data.data) &&
-      data.data.data.length > 0
-    ) {
-      const firstCourse = data.data.data[0];
-      if (firstCourse?.teacher) {
-        setTeacherData(firstCourse.teacher);
-      } else {
-        setTeacherData(null);
-      }
-    } else {
-      setTeacherData(null);
-    }
-  }, [instructorId, data]);
 
   return (
     <>
@@ -167,62 +137,15 @@ const CoursesContent = () => {
           </BreadcrumbItem>
           <BreadcrumbSeparator />
           <BreadcrumbItem>
-            <BreadcrumbPage>{t("Courses")}</BreadcrumbPage>
+            <BreadcrumbPage>{t("Library")}</BreadcrumbPage>
           </BreadcrumbItem>
         </BreadcrumbList>
       </Breadcrumb>
       <hr />
 
-      {/* Instructor filter active */}
-      {instructorId && teacherData && (
-        <div className="flex items-center relative mt-3 justify-center gap-4 p-4 mb-4 bg-gray-50 rounded border border-gray-200">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="absolute start-0 top-0">
-                <button
-                  className="px-4 py-2 bg-gray-200 cursor-pointer hover:bg-gray-300 rounded text-xs font-medium"
-                  onClick={() => {
-                    setInstructorId(null);
-                    setTeacherData(null);
-                    setPriceType(null);
-                    setCourseType(null);
-                    setProvider("institution");
-                  }}
-                >
-                  <X className="size-4" />
-                </button>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>{t("Clear Instructor Filter")}</TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="absolute end-2 top-2">
-                <Link href={"/instructors"}>
-                  <div className=" cursor-pointer text-main-dark">
-                    <ChevronRight className="size-6 rtl:rotate-180" />
-                  </div>
-                </Link>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>{t("Back To Instructors")}</TooltipContent>
-          </Tooltip>
-
-          <div className="text-center">
-            {t("Courses By")}{" "}
-            <span className="font-semibold text-lg">{teacherData.name}</span>
-            {teacherData.overview && (
-              <div className="text-sm text-gray-600 mt-1">
-                {teacherData.overview}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
-
       {/* Search input */}
       <div className="flex justify-center mt-6 items-center gap-2 w-full mb-2">
-        <div className="relative flex items-center w-full max-w-md">
+        <div className="relative mb-5 flex items-center w-full max-w-md">
           <Input
             id="keyword"
             ref={searchInputRef}
@@ -261,94 +184,6 @@ const CoursesContent = () => {
         </div>
       </div>
 
-      {/* Filters */}
-      <div className="flex flex-wrap gap-4 my-6 items-center">
-        <Select
-          onValueChange={(val) => {
-            setPriceType(val || null);
-            setPage(1);
-          }}
-          value={priceType ?? ""}
-        >
-          <SelectTrigger className="min-w-32">
-            <SelectValue placeholder={t("price type")} />
-          </SelectTrigger>
-          <SelectContent>
-            {priceTypeOptions.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
-                {t(opt.label)}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
-        <Select
-          onValueChange={(val) => {
-            setCourseType(val || null);
-            setPage(1);
-          }}
-          value={courseType ?? ""}
-        >
-          <SelectTrigger className="min-w-32">
-            <SelectValue placeholder={t("course type")} />
-          </SelectTrigger>
-          <SelectContent>
-            {courseTypeOptions.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
-                {t(opt.label)}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
-        <Select
-          onValueChange={(val) => {
-            setProvider(val as CourseProviders);
-            setPage(1);
-          }}
-          value={provider}
-        >
-          <SelectTrigger className="min-w-32">
-            <SelectValue placeholder={t("Offered By")} />
-          </SelectTrigger>
-          <SelectContent>
-            {providerTypeOptions.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
-                {t(opt.label)}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
-        <Select
-          onValueChange={(val) => {
-            setLearningType(val);
-            setPage(1);
-          }}
-          value={learningType ?? ""}
-        >
-          <SelectTrigger className="min-w-32">
-            <SelectValue placeholder={t("Learning Type")} />
-          </SelectTrigger>
-          <SelectContent>
-            {learningTypeOptions.map((opt) => (
-              <SelectItem key={opt.value} value={opt.value}>
-                {t(opt.label)}
-              </SelectItem>
-            ))}
-          </SelectContent>
-        </Select>
-
-        {(priceType || courseType || provider !== "institution") && (
-          <button
-            className="ml-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded text-xs font-medium"
-            onClick={handleResetFilters}
-          >
-            {t("Reset Filters")}
-          </button>
-        )}
-      </div>
-
       {/* Courses Grid */}
       {!isLoading && data?.data.data.length === 0 && (
         <div className="flex py-32 justify-center gap-y-6 flex-col items-center">
@@ -356,7 +191,7 @@ const CoursesContent = () => {
             <Image src={emptyCategories} alt="NoCourses" fill />
           </div>
           <p className="text-center max-w-xs md:text-base text-sm">
-            {t("There are no Courses yet")}
+            {t("There are no Books yet")}
           </p>
         </div>
       )}
@@ -368,7 +203,7 @@ const CoursesContent = () => {
           ))}
         </div>
       ) : (
-        <CoursesList courses={data?.data.data} />
+        <BooksList books={data?.data.data} />
       )}
 
       {!isLoading && data && data.data.meta.last_page > 1 && (
@@ -384,4 +219,4 @@ const CoursesContent = () => {
   );
 };
 
-export default CoursesContent;
+export default LibraryContent;

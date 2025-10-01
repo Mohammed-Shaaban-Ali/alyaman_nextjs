@@ -379,6 +379,15 @@ export interface ICourse {
   is_individual: boolean;
   is_institution: boolean;
 }
+export interface IBook {
+  id: number;
+  title: string;
+  image: string;
+  price?: string;
+  short_description: string;
+  content: string;
+  slug: string;
+}
 
 export interface IProduct {
   id: number;
