@@ -6,11 +6,12 @@ import {
 } from "@/utils/types";
 
 const libraryService = {
-  getBooks: (
-    body: { key_words?: string },
-    page: number = 1
-  ): Promise<IPaginatedReturnResponseWithBooks<IBook[]>> =>
-    request.post(`books`, { params: { ...body, page } }),
+  // POST to get books
+  getBooks: (body: {
+    key_words?: string;
+    page?: number;
+  }): Promise<IPaginatedReturnResponseWithBooks<IBook[]>> =>
+    request.post(`books`, body),
 
   getSingleBook: (book_id: number): Promise<IReturnResponse<IBook>> =>
     request.get(`books/${book_id}`),

@@ -1,5 +1,4 @@
 "use client";
-import CoursesList from "@/components/courses/courses-list";
 import {
   Breadcrumb,
   BreadcrumbItem,
@@ -8,92 +7,35 @@ import {
   BreadcrumbPage,
   BreadcrumbSeparator,
 } from "@/components/ui/breadcrumb";
-import courseService from "@/services/course";
 import { useQuery } from "@tanstack/react-query";
 import { useTranslations } from "next-intl";
-import {
-  CourseProviders,
-  CourseTypes,
-  ICourseTeacher,
-  PriceTypes,
-} from "@/utils/types";
+
 import { Skeleton } from "../ui/skeleton";
 import Image from "next/image";
 import { emptyCategories } from "@/assets";
 import { Button } from "../ui/button";
-import { Tooltip, TooltipContent, TooltipTrigger } from "../ui/tooltip";
-import Link from "next/link";
 import PaginationLinks01 from "../ui/pagination-links-01";
-import {
-  Select,
-  SelectContent,
-  SelectItem,
-  SelectTrigger,
-  SelectValue,
-} from "../ui/select";
+
 import { Input } from "../ui/input";
-import { ChevronRight, CircleXIcon, Search, X } from "lucide-react";
-import { useState, useEffect, useRef } from "react";
+import { CircleXIcon, Search } from "lucide-react";
+import { useState, useRef } from "react";
 
 // 🔑 nuqs
 import { useQueryState, parseAsString, parseAsInteger } from "nuqs";
 import BooksList from "./books-list";
 import libraryService from "@/services/library";
 
-const priceTypeOptions = [
-  { label: "fixed", value: "fixed" },
-  { label: "monthly", value: "monthly" },
-  { label: "per_level", value: "per_level" },
-];
-const courseTypeOptions = [
-  { label: "Course", value: "course" },
-  { label: "Workshop", value: "workshop" },
-];
-const providerTypeOptions = [
-  { label: "Individual", value: "individual" },
-  { label: "Institution", value: "institution" },
-];
-const learningTypeOptions = [
-  { label: "Online", value: "online" },
-  { label: "Offline", value: "offline" },
-  { label: "Mixed", value: "mixed" },
-  { label: "Self Study", value: "self-study" },
-];
-
 const LibraryContent = () => {
   const t = useTranslations();
   const searchInputRef = useRef<HTMLInputElement>(null);
 
-  // nuqs-based state (synced with URL params)
-  const [priceType, setPriceType] = useQueryState(
-    "price_type",
-    parseAsString.withDefault("")
-  );
-  const [learningType, setLearningType] = useQueryState(
-    "learning_type",
-    parseAsString.withDefault("")
-  );
-  const [courseType, setCourseType] = useQueryState(
-    "course_type",
-    parseAsString.withDefault("")
-  );
-  const [provider, setProvider] = useQueryState(
-    "provider",
-    { clearOnDefault: false, defaultValue: "institution" }
-    // parseAsString.withDefault("institution"),
-  );
   const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));
   const [keyword, setKeyword] = useQueryState(
     "keyword",
     parseAsString.withDefault("")
   );
-  const [instructorId, setInstructorId] = useQueryState(
-    "instructor",
-    parseAsString.withDefault("")
-  );
 
   const [searchValue, setSearchValue] = useState<string>(keyword);
-  const [teacherData, setTeacherData] = useState<ICourseTeacher | null>(null);
 
   // Clear input
   const handleClearInput = () => {
@@ -106,12 +48,8 @@ const LibraryContent = () => {
 
   // Reset filters
   const handleResetFilters = () => {
-    setPriceType(null);
-    setCourseType(null);
-    setProvider("institution");
     setKeyword(null);
     setPage(1);
-    setLearningType(null);
   };
 
   const { data, isLoading } = useQuery({
@@ -120,16 +58,13 @@ const LibraryContent = () => {
     staleTime: 60 * 1000 * 60,
     retry: false,
     queryFn: () =>
-      libraryService.getBooks(
-        {
-          key_words: keyword ? keyword : undefined,
-        },
-        page
-      ),
+      libraryService.getBooks({
+        key_words: keyword ? keyword : undefined,
+        page,
+      }),
   });
 
   // Fetch teacher data if instructorId is present
-  console.log(data);
   return (
     <>
       {/* Breadcrumb */}

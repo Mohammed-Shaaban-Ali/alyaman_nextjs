@@ -43,7 +43,10 @@ export interface ILink {
   active: boolean;
 }
 export interface IPaginatedReturnResponse<T> {
-  data: IPaginatedData<T>;
+  data: {
+    courses: IPaginatedData<T>;
+    languages: { id: number; native_name: string }[];
+  };
   message: string;
   status: boolean;
   status_code: number;
@@ -362,6 +365,9 @@ export interface ICourseSpeficiations {
   course_type?: "course" | "workshop";
   teacher_id?: number;
   institution_or_individual: "institution" | "individual";
+  language_id?: number;
+  min_duration?: number;
+  max_duration?: number;
 }
 
 export interface ICategory {
@@ -389,6 +395,8 @@ export interface ICourse {
   teacher: ICourseTeacher;
   is_individual: boolean;
   is_institution: boolean;
+  duration_in_hours: number;
+  language: { id: number; native_name: string };
 }
 export interface IBook {
   id: number;
@@ -398,6 +406,10 @@ export interface IBook {
   short_description: string;
   content: string;
   slug: string;
+  category: {
+    id: number;
+    name: string;
+  };
 }
 
 export interface IProduct {

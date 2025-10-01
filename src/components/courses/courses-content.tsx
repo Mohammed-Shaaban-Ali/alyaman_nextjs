@@ -75,10 +75,13 @@ const CoursesContent = () => {
     "course_type",
     parseAsString.withDefault("")
   );
-  const [provider, setProvider] = useQueryState(
-    "provider",
-    { clearOnDefault: false, defaultValue: "institution" }
-    // parseAsString.withDefault("institution"),
+  const [provider, setProvider] = useQueryState("provider", {
+    clearOnDefault: false,
+    defaultValue: "institution",
+  });
+  const [language, setLanguage] = useQueryState(
+    "language",
+    parseAsString.withDefault("")
   );
   const [page, setPage] = useQueryState("page", parseAsInteger.withDefault(1));
   const [keyword, setKeyword] = useQueryState(
@@ -90,12 +93,22 @@ const CoursesContent = () => {
     parseAsString.withDefault("")
   );
 
+  // ✅ New duration filters
+  const [minDuration, setMinDuration] = useQueryState(
+    "min_duration",
+    parseAsInteger.withDefault(0)
+  );
+  const [maxDuration, setMaxDuration] = useQueryState(
+    "max_duration",
+    parseAsInteger.withDefault(0)
+  );
+
   const [searchValue, setSearchValue] = useState<string>(keyword);
   const [teacherData, setTeacherData] = useState<ICourseTeacher | null>(null);
 
   // Clear input
   const handleClearInput = () => {
-    setKeyword(null); // removes from URL
+    setKeyword(null);
     setSearchValue("");
     if (searchInputRef.current) {
       searchInputRef.current.value = "";
@@ -110,6 +123,9 @@ const CoursesContent = () => {
     setKeyword(null);
     setPage(1);
     setLearningType(null);
+    setLanguage(null);
+    setMinDuration(0);
+    setMaxDuration(0);
   };
 
   const { data, isLoading } = useQuery({
@@ -120,8 +136,10 @@ const CoursesContent = () => {
       provider,
       keyword,
       instructorId,
-      // learning_type,
       page,
+      language,
+      minDuration,
+      maxDuration,
     ],
     queryFn: () =>
       courseService.getCourses(
@@ -131,7 +149,9 @@ const CoursesContent = () => {
           course_type: courseType as CourseTypes,
           key_words: keyword ? keyword : undefined,
           teacher_id: instructorId ? Number(instructorId) : undefined,
-          // learning_type: learningType ? learningType : undefined
+          language_id: language ? Number(language) : undefined,
+          min_duration: minDuration || undefined,
+          max_duration: maxDuration || undefined,
         },
         page
       ),
@@ -143,10 +163,10 @@ const CoursesContent = () => {
       instructorId &&
       data &&
       data.data &&
-      Array.isArray(data.data.data) &&
-      data.data.data.length > 0
+      Array.isArray(data.data.courses.data) &&
+      data.data.courses.data.length > 0
     ) {
-      const firstCourse = data.data.data[0];
+      const firstCourse = data.data.courses.data[0];
       if (firstCourse?.teacher) {
         setTeacherData(firstCourse.teacher);
       } else {
@@ -156,6 +176,8 @@ const CoursesContent = () => {
       setTeacherData(null);
     }
   }, [instructorId, data]);
+
+  const languageTypeOptions = data?.data?.languages;
 
   return (
     <>
@@ -172,53 +194,6 @@ const CoursesContent = () => {
         </BreadcrumbList>
       </Breadcrumb>
       <hr />
-
-      {/* Instructor filter active */}
-      {instructorId && teacherData && (
-        <div className="flex items-center relative mt-3 justify-center gap-4 p-4 mb-4 bg-gray-50 rounded border border-gray-200">
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="absolute start-0 top-0">
-                <button
-                  className="px-4 py-2 bg-gray-200 cursor-pointer hover:bg-gray-300 rounded text-xs font-medium"
-                  onClick={() => {
-                    setInstructorId(null);
-                    setTeacherData(null);
-                    setPriceType(null);
-                    setCourseType(null);
-                    setProvider("institution");
-                  }}
-                >
-                  <X className="size-4" />
-                </button>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>{t("Clear Instructor Filter")}</TooltipContent>
-          </Tooltip>
-          <Tooltip>
-            <TooltipTrigger asChild>
-              <div className="absolute end-2 top-2">
-                <Link href={"/instructors"}>
-                  <div className=" cursor-pointer text-main-dark">
-                    <ChevronRight className="size-6 rtl:rotate-180" />
-                  </div>
-                </Link>
-              </div>
-            </TooltipTrigger>
-            <TooltipContent>{t("Back To Instructors")}</TooltipContent>
-          </Tooltip>
-
-          <div className="text-center">
-            {t("Courses By")}{" "}
-            <span className="font-semibold text-lg">{teacherData.name}</span>
-            {teacherData.overview && (
-              <div className="text-sm text-gray-600 mt-1">
-                {teacherData.overview}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
 
       {/* Search input */}
       <div className="flex justify-center mt-6 items-center gap-2 w-full mb-2">
@@ -263,6 +238,7 @@ const CoursesContent = () => {
 
       {/* Filters */}
       <div className="flex flex-wrap gap-4 my-6 items-center">
+        {/* Price Type */}
         <Select
           onValueChange={(val) => {
             setPriceType(val || null);
@@ -282,6 +258,7 @@ const CoursesContent = () => {
           </SelectContent>
         </Select>
 
+        {/* Course Type */}
         <Select
           onValueChange={(val) => {
             setCourseType(val || null);
@@ -301,6 +278,7 @@ const CoursesContent = () => {
           </SelectContent>
         </Select>
 
+        {/* Provider */}
         <Select
           onValueChange={(val) => {
             setProvider(val as CourseProviders);
@@ -320,6 +298,7 @@ const CoursesContent = () => {
           </SelectContent>
         </Select>
 
+        {/* Learning Type */}
         <Select
           onValueChange={(val) => {
             setLearningType(val);
@@ -339,18 +318,65 @@ const CoursesContent = () => {
           </SelectContent>
         </Select>
 
-        {(priceType || courseType || provider !== "institution") && (
+        {/* Language */}
+        {isLoading ? (
+          <div className="w-32 h-12 animate-pulse bg-gray-100 rounded-xl"></div>
+        ) : (
+          <Select
+            onValueChange={(val) => {
+              setLanguage(val);
+              setPage(1);
+            }}
+            value={language ?? ""}
+          >
+            <SelectTrigger className="min-w-32">
+              <SelectValue placeholder={t("Language")} />
+            </SelectTrigger>
+            <SelectContent>
+              {languageTypeOptions?.map((opt) => (
+                <SelectItem key={opt.id} value={`${opt.id}`}>
+                  {opt.native_name}
+                </SelectItem>
+              ))}
+            </SelectContent>
+          </Select>
+        )}
+
+        {/* ✅ Duration Filter */}
+        <div className="flex items-center gap-2">
+          <Input
+            type="number"
+            placeholder={t("Min Duration")}
+            value={minDuration || ""}
+            onChange={(e) => setMinDuration(Number(e.target.value) || 0)}
+            className="w-28"
+          />
+          <span>-</span>
+          <Input
+            type="number"
+            placeholder={t("Max Duration")}
+            value={maxDuration || ""}
+            onChange={(e) => setMaxDuration(Number(e.target.value) || 0)}
+            className="w-28"
+          />
+        </div>
+
+        {priceType ||
+        courseType ||
+        provider !== "institution" ||
+        minDuration ||
+        maxDuration ? (
           <button
             className="ml-2 px-4 py-2 bg-gray-200 hover:bg-gray-300 rounded text-xs font-medium"
             onClick={handleResetFilters}
           >
             {t("Reset Filters")}
           </button>
-        )}
+        ) : null}
       </div>
 
       {/* Courses Grid */}
-      {!isLoading && data?.data.data.length === 0 && (
+      {!isLoading && data?.data.courses.data?.length === 0 && (
         <div className="flex py-32 justify-center gap-y-6 flex-col items-center">
           <div className="relative size-32">
             <Image src={emptyCategories} alt="NoCourses" fill />
@@ -368,14 +394,14 @@ const CoursesContent = () => {
           ))}
         </div>
       ) : (
-        <CoursesList courses={data?.data.data} />
+        <CoursesList courses={data?.data.courses.data} />
       )}
 
-      {!isLoading && data && data.data.meta.last_page > 1 && (
+      {!isLoading && data && data.data.courses?.meta.last_page > 1 && (
         <div className="mt-8">
           <PaginationLinks01
-            currentPage={data.data.meta.current_page}
-            totalPages={data.data.meta.last_page}
+            currentPage={data.data.courses?.meta.current_page}
+            totalPages={data.data.courses?.meta.last_page}
             paginationItemsToDisplay={4}
           />
         </div>

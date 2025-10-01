@@ -670,5 +670,7 @@
   "vat_value": "VAT",
   "date-of-birth": "Date of Birth",
   "date-of-birth-select": "Select Date of Birth",
-  "message-sent-success-desc": "Thank you for contacting us. We have received your message, and our team will contact you shortly. We appreciate your feedback and look forward to assisting you!"
+  "message-sent-success-desc": "Thank you for contacting us. We have received your message, and our team will contact you shortly. We appreciate your feedback and look forward to assisting you!",
+  "Min Duration": "Min Duration",
+  "Max Duration": "Max Duration"
 }

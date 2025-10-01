@@ -11,7 +11,7 @@ const BooksList = ({ books }: { books: IBook[] | undefined }) => {
     <div>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
         {books?.map((book) => (
-          <Card key={book.id} className="h-full pt-0 pb-0 flex flex-col">
+          <Card key={book.id} className="h-full pt-0 pb-0 flex flex-col gap-2">
             <CardHeader className="p-0">
               <Link href={`/library/book/${book.id}`}>
                 <div className="relative w-full h-40 rounded-t-xl overflow-hidden">
@@ -31,6 +31,9 @@ const BooksList = ({ books }: { books: IBook[] | undefined }) => {
                 className="flex h-full flex-col justify-between"
               >
                 <div className="flex flex-col">
+                  <span className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-700 capitalize">
+                    {book.category?.name}
+                  </span>
                   <h3 className="font-semibold text-lg line-clamp-1">
                     {book.title}
                   </h3>

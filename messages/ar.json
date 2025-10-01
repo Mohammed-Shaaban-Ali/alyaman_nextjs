@@ -674,5 +674,6 @@
   "cancelled": "تم الإلغاء",
   "success_payment": "تمت عملية الدفع بنجاح",
   "date-of-birth": "تاريخ الميلاد",
-  "date-of-birth-select": "اختر تاريخ الميلاد"
+  "Min Duration": "المدة الدنيا",
+  "Max Duration": "المدة القصوى"
 }
